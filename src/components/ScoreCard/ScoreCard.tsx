@@ -1,6 +1,6 @@
 import {Card, Typography} from "@material-ui/core";
-import {useGameStore} from "../../state/gameStore";
-import {Score} from "../../state/types";
+import {useGameStore} from "state/gameStore";
+import {Score} from "state/types";
 import {FC} from "react";
 import './ScoreCard.scss'
 
