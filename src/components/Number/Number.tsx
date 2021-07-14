@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {LETTERS} from "utils/letters";
+import {Score} from "state/types";
 import './Number.scss';
-import {Score} from "../../state/types";
 
 type NumberProps = {
     number: string | Number,

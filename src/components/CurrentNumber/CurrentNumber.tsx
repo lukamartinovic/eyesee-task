@@ -1,31 +1,12 @@
-import React, {FC, useEffect, useRef} from "react";
-import {useGameStore} from "../../state/gameStore";
-import {DIFFICULTY_TIMEOUT} from "../../utils/letters";
+import React, {FC} from "react";
+import {useGameStore} from "state/gameStore";
 import {Typography} from "@material-ui/core";
-import {GameStore} from "../../state/types";
-import useGameInput from "./useGameInput";
+import {useGameInput, useNumberTimer} from "hooks";
 
 const CurrentNumber: FC = () => {
-    const {
-        currentNumber,
-        setRandomNumber,
-        score,
-        difficulty,
-        setScore,
-    } = useGameStore<GameStore>(state => state as GameStore);
-    const timer = useRef<any>(null);
-
+    const currentNumber = useGameStore(state => state.currentNumber);
+    useNumberTimer();
     useGameInput();
-
-    useEffect(() => {
-        clearInterval(timer.current);
-        setRandomNumber();
-        timer.current = setInterval(() => {
-            setScore('timeout');
-        }, DIFFICULTY_TIMEOUT[difficulty]);
-
-        return () => clearInterval(timer.current);
-    }, [score, difficulty, setRandomNumber, setScore])
 
     return <Typography variant="h1">{currentNumber}</Typography>
 }

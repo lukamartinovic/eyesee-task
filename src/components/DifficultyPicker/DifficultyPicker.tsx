@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import {useGameStore} from "../../state/gameStore";
+import {useGameStore} from "state/gameStore";
 import {FormControlLabel, Radio, RadioGroup, Typography} from "@material-ui/core";
-import {Difficulty} from "../../state/types";
+import {Difficulty} from "state/types";
 import './DifficultyPicker.scss';
 
 const DifficultyPicker: FC = () => {

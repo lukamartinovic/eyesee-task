@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import {LETTERS} from "../../utils/letters";
+import {LETTERS} from "utils/letters";
 import {Number} from 'components';
-import {useGameStore} from "../../state/gameStore";
+import {useGameStore} from "state/gameStore";
 import './Numbers.scss';
 
 const Numbers: FC = () => {

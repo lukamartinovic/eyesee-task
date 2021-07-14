@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {useGameStore} from "../../state/gameStore";
+import {useGameStore} from "state/gameStore";
 import {Button, Typography} from "@material-ui/core";
 import './Statistics.scss';
 

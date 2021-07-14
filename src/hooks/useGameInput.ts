@@ -1,5 +1,5 @@
 import {useCallback, useEffect} from "react";
-import {useGameStore} from "../../state/gameStore";
+import {useGameStore} from "../state/gameStore";
 
 const useGameInput = () => {
     const {setScore} = useGameStore(state => state);
