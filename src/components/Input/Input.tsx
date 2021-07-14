@@ -1,9 +1,15 @@
-import React, {FC, useRef} from "react";
+import React, {FC, useEffect, useRef} from "react";
 import {useGameStore} from "../../state/gameStore";
+import {Simulate} from "react-dom/test-utils";
 
 const Input: FC = () => {
     const inputRef = useRef<HTMLInputElement>(null)
     const {setScore, score, currentNumber} = useGameStore(state => state);
+
+    useEffect(() => {
+        if(inputRef.current)
+            inputRef.current.focus()
+    }, [])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(!inputRef.current) return;
@@ -21,7 +27,7 @@ const Input: FC = () => {
         }
     }
 
-    return <input ref={inputRef} placeholder={'Input letter'} onChange={handleChange}/>
+    return <input ref={inputRef} placeholder='Input letter' onChange={handleChange}/>
 }
 
 export default Input;

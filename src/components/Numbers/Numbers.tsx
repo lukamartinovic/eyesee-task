@@ -8,10 +8,7 @@ const Numbers: FC = () => {
     const score = useGameStore(state => state.score);
 
     const mapLetters = Object.keys(LETTERS).map(
-        number => {
-            const attempt = score[number]
-            return <Number number={number} score={attempt}/>;
-        }
+        number => <Number key={number} number={number} score={score[number]}/>
     )
 
     return <div className='numbers'>{mapLetters}</div>

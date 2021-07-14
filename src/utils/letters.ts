@@ -1,3 +1,5 @@
+import {Difficulty} from "../state/gameStore";
+
 export const LETTERS: Record<string, string> = {
     1: "a",
     2: "b",
@@ -54,5 +56,11 @@ export const INITIAL_SCORE: Record<string, boolean | null> = {
     24: null,
     25: null,
     26: null
+}
+
+export const DIFFICULTY_TIMEOUT: Record<Difficulty, number> = {
+    easy: 5000,
+    medium: 3500,
+    hard: 2000
 }
 

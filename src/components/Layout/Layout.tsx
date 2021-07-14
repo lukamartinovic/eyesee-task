@@ -7,28 +7,24 @@ const Layout: FC = () => {
     const currentNumber = useGameStore(state => state.currentNumber);
 
     useEffect(() => {
-        if(!currentNumber && gameStarted)
+        if (!currentNumber && gameStarted)
             setGameStarted(false);
     }, [currentNumber])
 
     const [gameStarted, setGameStarted] = useState(false);
-
-    const handleStart = () => {
-        setGameStarted(true);
-    }
-
     return (
         <div className="layout">
-            <DifficultyPicker/>
             {gameStarted ?
-                    <>
-                        <CurrentNumber/>
-                        <Input/>
-                    </>
-                    :
-                    <button onClick={handleStart}>Start game</button>
-            }
-            <Numbers/>
+                <>
+                    <CurrentNumber/>
+                    <Input/>
+                    <Numbers/>
+                </>
+                :
+                <>
+                    <DifficultyPicker/>
+                    <button onClick={() => setGameStarted(true)}>Start game</button>
+                </>}
         </div>
     )
 }

@@ -1,13 +1,16 @@
 import create from 'zustand';
 import {INITIAL_SCORE, LETTERS} from "../utils/letters";
 
+export type Difficulty = 'easy' | 'medium' | 'hard';
+
 export type GameStore = {
     currentNumber: string | null,
     score: Record<string, boolean | null>,
     remainingNumbers: string[]
     setRandomNumber: () => void,
-    difficulty: 'easy' | 'medium' | 'hard',
+    difficulty: Difficulty,
     setScore: (input: string) => void,
+    setDifficulty: (difficulty: Difficulty) => void,
     resetGame: () => void
 }
 
@@ -28,6 +31,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         if(currentNumber)
             set({score: {...score, [currentNumber]: LETTERS[currentNumber] === input}})
     },
+    setDifficulty: (difficulty: Difficulty) => set({difficulty}),
     difficulty: 'easy',
     resetGame: () => {
         set({currentNumber: null, score: INITIAL_SCORE, remainingNumbers: Object.keys(LETTERS)})
