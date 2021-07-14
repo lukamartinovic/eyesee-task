@@ -1,5 +1,8 @@
 import React, {FC} from "react";
-import {Difficulty, useGameStore} from "../../state/gameStore";
+import {useGameStore} from "../../state/gameStore";
+import {FormControlLabel, Radio, RadioGroup, Typography} from "@material-ui/core";
+import {Difficulty} from "../../state/types";
+import './DifficultyPicker.scss';
 
 const DifficultyPicker: FC = () => {
     const {difficulty, setDifficulty} = useGameStore(state => state)
@@ -9,14 +12,17 @@ const DifficultyPicker: FC = () => {
     }
 
     return (
-        <div onChange={handleChange}>
-            <input type="radio" id="easy" name="drone" value="easy" defaultChecked={difficulty === "easy"}/>
-            <label htmlFor="huey">Easy</label>
-            <input type="radio" id="medium" name="drone" value="medium" defaultChecked={difficulty === "medium"}/>
-            <label htmlFor="huey">Medium</label>
-            <input type="radio" id="hard" name="drone" value="hard" defaultChecked={difficulty === "hard"}/>
-            <label htmlFor="huey">Hard</label>
-        </div>)
+        <div className='difficultyPicker'>
+            <Typography>
+                Select a difficulty:
+            </Typography>
+            <RadioGroup value={difficulty} onChange={handleChange}>
+                <FormControlLabel value="easy" control={<Radio />} label="Easy" />
+                <FormControlLabel value="medium" control={<Radio />} label="Medium" />
+                <FormControlLabel value="hard" control={<Radio />} label="Hard" />
+            </RadioGroup>
+        </div>
+        )
 }
 
 export default DifficultyPicker;

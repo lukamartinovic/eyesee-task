@@ -1,39 +1,28 @@
 import create from 'zustand';
 import {INITIAL_SCORE, LETTERS} from "../utils/letters";
-
-export type Difficulty = 'easy' | 'medium' | 'hard';
-
-export type GameStore = {
-    currentNumber: string | null,
-    score: Record<string, boolean | null>,
-    remainingNumbers: string[]
-    setRandomNumber: () => void,
-    difficulty: Difficulty,
-    setScore: (input: string) => void,
-    setDifficulty: (difficulty: Difficulty) => void,
-    resetGame: () => void
-}
+import {Difficulty, GameStore} from "./types";
 
 export const useGameStore = create<GameStore>((set, get) => ({
     currentNumber: null,
     attemptedLetter: null,
     score: INITIAL_SCORE,
     remainingNumbers: Object.keys(LETTERS),
+    difficulty: 'easy',
+    gameStart: true,
+    setGameStart: gameStart => set({gameStart}),
     setRandomNumber: (): void => {
         const {remainingNumbers} = get();
         const newRemainingNumbers = [...remainingNumbers].sort(number => 0.5 - Math.random());
         const randomNumber = newRemainingNumbers.pop();
         set({remainingNumbers: newRemainingNumbers, currentNumber: randomNumber ? String(randomNumber) : null})
-        console.log(get());
     },
     setScore: (input: string) => {
         const {currentNumber, score} = get();
         if(currentNumber)
-            set({score: {...score, [currentNumber]: LETTERS[currentNumber] === input}})
+            set({score: {...score, [currentNumber]: LETTERS[currentNumber] === input ? "correct" : 'incorrect'}})
     },
     setDifficulty: (difficulty: Difficulty) => set({difficulty}),
-    difficulty: 'easy',
     resetGame: () => {
-        set({currentNumber: null, score: INITIAL_SCORE, remainingNumbers: Object.keys(LETTERS)})
+        set({currentNumber: null, score: INITIAL_SCORE, remainingNumbers: Object.keys(LETTERS), gameStart: true})
     },
 }))

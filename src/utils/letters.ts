@@ -1,4 +1,4 @@
-import {Difficulty} from "../state/gameStore";
+import {Difficulty, Score} from "../state/types";
 
 export const LETTERS: Record<string, string> = {
     1: "a",
@@ -29,33 +29,33 @@ export const LETTERS: Record<string, string> = {
     26: "z"
 }
 
-export const INITIAL_SCORE: Record<string, boolean | null> = {
-    1: null,
-    2: null,
-    3: null,
-    4: null,
-    5: null,
-    6: null,
-    7: null,
-    8: null,
-    9: null,
-    10: null,
-    11: null,
-    12: null,
-    13: null,
-    14: null,
-    15: null,
-    16: null,
-    17: null,
-    18: null,
-    19: null,
-    20: null,
-    21: null,
-    22: null,
-    23: null,
-    24: null,
-    25: null,
-    26: null
+export const INITIAL_SCORE: Record<string, Score> = {
+    1: 'inactive',
+    2: 'inactive',
+    3: 'inactive',
+    4: 'inactive',
+    5: 'inactive',
+    6: 'inactive',
+    7: 'inactive',
+    8: 'inactive',
+    9: 'inactive',
+    10: 'inactive',
+    11: 'inactive',
+    12: 'inactive',
+    13: 'inactive',
+    14: 'inactive',
+    15: 'inactive',
+    16: 'inactive',
+    17: 'inactive',
+    18: 'inactive',
+    19: 'inactive',
+    20: 'inactive',
+    21: 'inactive',
+    22: 'inactive',
+    23: 'inactive',
+    24: 'inactive',
+    25: 'inactive',
+    26: 'inactive'
 }
 
 export const DIFFICULTY_TIMEOUT: Record<Difficulty, number> = {

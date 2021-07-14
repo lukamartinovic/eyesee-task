@@ -1,14 +1,15 @@
 import React, {FC} from "react";
 import {LETTERS} from "utils/letters";
 import './Number.scss';
+import {Score} from "../../state/types";
 
 type NumberProps = {
     number: string | Number,
-    score: boolean | null,
+    score: Score,
 }
 
 const Number: FC<NumberProps> = ({number, score}) => {
-    return <div className="number">{LETTERS[String(number)]} ({number})</div>
+    return <div className={`number number-${score}`}>{LETTERS[String(number)]} ({number})</div>
 }
 
 export default Number;

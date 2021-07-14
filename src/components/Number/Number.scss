@@ -1,4 +1,12 @@
 .number {
   font-size: 30px;
   text-transform: capitalize;
+
+  &-correct{
+    color: green;
+  }
+
+  &-incorrect{
+    color: red;
+  }
 }

@@ -1,26 +1,33 @@
-import React, {FC, useEffect, useRef, useState} from "react";
-import {useGameStore, GameStore} from "../../state/gameStore";
+import React, {FC, useEffect, useRef} from "react";
+import {useGameStore} from "../../state/gameStore";
 import {DIFFICULTY_TIMEOUT} from "../../utils/letters";
+import {Typography} from "@material-ui/core";
+import {GameStore} from "../../state/types";
+import useGameInput from "./useGameInput";
 
 const CurrentNumber: FC = () => {
-    const {currentNumber, setRandomNumber, score, resetGame, difficulty} = useGameStore<GameStore>(state => state as GameStore);
+    const {
+        currentNumber,
+        setRandomNumber,
+        score,
+        difficulty,
+        setScore,
+    } = useGameStore<GameStore>(state => state as GameStore);
     const timer = useRef<any>(null);
 
-    useEffect(() => {
-       timer.current = setInterval(() => setRandomNumber(), DIFFICULTY_TIMEOUT[difficulty]);
-       return () => {
-           resetGame();
-           timer.current && clearInterval(timer.current);
-       }
-    }, []);
+    useGameInput();
 
     useEffect(() => {
         clearInterval(timer.current);
         setRandomNumber();
-        timer.current = setInterval(() => setRandomNumber(), DIFFICULTY_TIMEOUT[difficulty]);
-    }, [score])
+        timer.current = setInterval(() => {
+            setScore('timeout');
+        }, DIFFICULTY_TIMEOUT[difficulty]);
 
-    return <div >{currentNumber || "Game over"}</div>
+        return () => clearInterval(timer.current);
+    }, [score, difficulty, setRandomNumber, setScore])
+
+    return <Typography variant="h1">{currentNumber}</Typography>
 }
 
 export default CurrentNumber;
