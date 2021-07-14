@@ -1,18 +1,25 @@
-import React, {FC, useEffect, useState} from "react";
-
-const getRandomNumber = (): number => Math.floor(Math.random() * 26) + 1
+import React, {FC, useEffect, useRef, useState} from "react";
+import {useGameStore, GameStore} from "../../state/gameStore";
 
 const CurrentNumber: FC = () => {
-    const [number, setNumber] = useState<number>();
+    const {currentNumber, setRandomNumber, score, resetGame} = useGameStore<GameStore>(state => state as GameStore);
+    const timer = useRef<any>(null);
 
     useEffect(() => {
-        setTimeout(
-            () => setNumber(getRandomNumber()),
-            3000
-        )
-    }, [number])
+       timer.current = setInterval(() => setRandomNumber(), 1000);
+       return () => {
+           resetGame();
+           timer.current && clearInterval(timer.current);
+       }
+    }, []);
 
-    return <div>{number}</div>
+    useEffect(() => {
+        clearInterval(timer.current);
+        setRandomNumber();
+        timer.current = setInterval(() => setRandomNumber(), 1000);
+    }, [score])
+
+    return <div >{currentNumber || "Game over"}</div>
 }
 
 export default CurrentNumber;

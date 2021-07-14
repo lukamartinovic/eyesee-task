@@ -4,10 +4,10 @@ import './Number.scss';
 
 type NumberProps = {
     number: string | Number,
-    attempt?: boolean
+    score: boolean | null,
 }
 
-const Number: FC<NumberProps> = ({number, attempt}) => {
+const Number: FC<NumberProps> = ({number, score}) => {
     return <div className="number">{LETTERS[String(number)]} ({number})</div>
 }
 
