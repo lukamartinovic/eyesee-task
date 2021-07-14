@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {CurrentNumber, DifficultyPicker, Numbers, Statistics, TopBar} from "components";
+import {CurrentNumber, DifficultyPicker, Numbers, Statistics, TopBar, ScoreCard} from "components";
 import {Button, Typography} from "@material-ui/core";
 import {useGameStore} from "state/gameStore";
 import './Layout.scss';
@@ -11,6 +11,7 @@ const Layout: FC = () => {
         <>
             <CurrentNumber/>
             {currentNumber ? <Numbers /> : <Statistics/>}
+            <ScoreCard />
         </>;
 
     const StartMenu =

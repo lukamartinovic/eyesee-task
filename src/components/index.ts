@@ -5,3 +5,4 @@ export {default as Numbers} from './Numbers/Numbers';
 export {default as CurrentNumber} from './CurrentNumber/CurrentNumber';
 export {default as TopBar} from './TopBar/TopBar';
 export {default as Statistics} from './Statistics/Statistics'
+export {default as ScoreCard} from './ScoreCard/ScoreCard';
